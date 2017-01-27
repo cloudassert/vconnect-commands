@@ -176,7 +176,7 @@ function VConnect-MountIso($Datacenter, $Cluster, $FolderName, $RootFolderPath, 
         throw $errorMessage
     } 
     $private:cddrive=Get-CDDrive -VM $private:vm
-    $modCds = Set-CDDrive -CD $private:cddrive -IsoPath $ISOPath -Confirm:$false
+    $modCds = Set-CDDrive -CD $private:cddrive -IsoPath $ISOPath -Connected $true -Confirm:$false
     if (!$?)
     {
         $errorMessage = "Failure mounting ISO to VM.`nError Message:`n"
