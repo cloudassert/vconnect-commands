@@ -10,7 +10,14 @@ param($snapInName)
 
 function VConnect-Connect-VIServer {
 param($HostServerName, $HostServerPort, $UserName, $Password)
-    $private:x = Connect-VIServer -Server $HostServerName -Port $HostServerPort -User $UserName -Password $Password
+    if($VIServerCred)
+    {
+	    $private:x = Connect-VIServer -Server $HostServerName -Port $HostServerPort -Credential $VIServerCred
+    }
+    else
+    {
+        $private:x = Connect-VIServer -Server $HostServerName -Port $HostServerPort -User $UserName -Password $Password
+    }    
     return $private:x
 }
 
